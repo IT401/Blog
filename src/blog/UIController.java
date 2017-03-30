@@ -21,8 +21,8 @@ import javax.swing.text.Document;
  * @author Liudas
  */
 public class UIController {
-    private JFrame window;
-    private JPanel contentPane, editorPane;
+    private JFrame window, editorWindow;
+    private JPanel contentPane;
     private JEditorPane editor;
 
     public UIController() {
@@ -47,12 +47,13 @@ public class UIController {
           c.fill = GridBagConstraints.HORIZONTAL;
           window.add(panelarr[i], c);
       }*/
+
       //setup header
       JButton editorButton = new JButton("New Blog Message");
       editorButton.addActionListener(new ActionListener() {
 
         public void actionPerformed(ActionEvent e) {
-          showEditor();
+          toggleEditor(true);
         }
       });
       c.gridx = 0;
@@ -87,12 +88,11 @@ public class UIController {
       c.fill = GridBagConstraints.BOTH;
       window.add(contentPane, c);
 
-      //NOTE: rewrite editor pane as a custom window
-      // setup editor pane
-      editorPane = new JPanel();
-      editorPane.setLayout(new GridBagLayout());
-      editorPane.setBackground(Color.RED);
-      editorPane.setVisible(false);
+      // setup editor window
+      editorWindow = new JFrame("New Blog Message");
+      editorWindow.setLayout(new GridBagLayout());
+      editorWindow.setSize(800, 400);
+      editorWindow.setVisible(true);
       editor = new JEditorPane();
       c.gridx = 0;
       c.gridy = 0;
@@ -101,26 +101,17 @@ public class UIController {
       c.weightx = 1.0;
       c.weighty = 1.0;
       c.fill = GridBagConstraints.BOTH;
-      editorPane.add(editor, c);
-      c.gridy = 1;
-      window.add(editorPane, c);
+      editorWindow.add(editor, c);
 
       window.setVisible(true);
     }
 
-    public void showEditor() {
-      // set visibility to editorpane
-      contentPane.setVisible(false);
-      editorPane.setVisible(true);
+    public void toggleEditor(boolean isEditor) {
+      editorWindow.setVisible(isEditor);
     }
 
     public Document getDocument() {
       return editor.getDocument();
-    }
-
-    public void showContent() {
-      editorPane.setVisible(false);
-      contentPane.setVisible(true);
     }
 
     public void showSearch() {
