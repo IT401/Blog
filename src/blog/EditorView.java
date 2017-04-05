@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package blog;
 
 import java.awt.GridBagConstraints;
@@ -14,16 +9,13 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.text.html.HTMLDocument;
 
-/**
- *
- * @author Liudas
- */
-public class EditorView extends JFrame {
+public class EditorView extends View {
   private EditorController controller;
   private JEditorPane editor;
   private JButton saveButton;
 
   public EditorView(EditorController controller) {
+    super("New Blog Message");
     this.controller = controller;
     this.setLayout(new GridBagLayout());
     this.setSize(800, 400);
@@ -32,7 +24,7 @@ public class EditorView extends JFrame {
 
     editor = new JEditorPane();
     editor.setContentType("text/html");
-    editor.setText("<p>Random shit</p><img width=\"200\" height=\"200\" src=\"file:C:\\Users\\Liudas\\Google Drive\\Projects\\OOP\\Blogsite\\Blog\\shiz.jpg\" />");
+    editor.setText("<p>Random shit</p><img src='file:shiz.jpg' width=200 height=200 />");
     c.gridx = 0;
     c.gridy = 0;
     c.gridwidth = 2;
@@ -60,10 +52,6 @@ public class EditorView extends JFrame {
     c.fill = GridBagConstraints.HORIZONTAL;
     this.add(saveButton, c);
     toggle(false);
-  }
-
-  public void toggle(boolean isVisible) {
-    this.setVisible(isVisible);
   }
 
   HTMLDocument getDocument() {

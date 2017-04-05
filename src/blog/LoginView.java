@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package blog;
 
 import java.awt.GridBagConstraints;
@@ -15,17 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Liudas
- */
-public class LoginView extends JFrame {
+public class LoginView extends View {
   private AuthController controller;
   private JButton registerButton, loginButton;
   private JTextField usernameField;
   private JPasswordField passwordField;
 
   public LoginView(AuthController controller) {
+     super("Blog");
      this.controller = controller;
      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      this.setLayout(new GridBagLayout());
@@ -79,10 +71,6 @@ public class LoginView extends JFrame {
 
      toggle(true);
    }
-
-    public void toggle(boolean isVisible) {
-      this.setVisible(isVisible);
-    }
 
     public String getUsername() {
       return usernameField.getText();
