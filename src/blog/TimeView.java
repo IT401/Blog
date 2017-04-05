@@ -5,17 +5,17 @@
  */
 package blog;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author Liudas
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        MainController ui = new MainController();
+public class TimeView {
+    private TimeController controller;
+    private JButton addButton, subButton;
+    
+    public TimeView(TimeController controller) {
+        this.controller = controller;
     }
-
 }

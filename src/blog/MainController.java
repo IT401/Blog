@@ -5,27 +5,27 @@
  */
 package blog;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.text.Document;
+import javax.swing.text.html.HTMLDocument;
 
 /**
  *
  * @author Liudas
  */
-public class UIController {
-    private JFrame window, editorWindow;
+public class MainController {
+    private JFrame window;
     private JPanel contentPane;
-    private JEditorPane editor;
+    private EditorController editorController;
+    private AuthController authController;
 
-    public UIController() {
+    public MainController() {
       // setup main window
       window = new JFrame("Blog");
       window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,26 +34,24 @@ public class UIController {
 
       GridBagConstraints c = new GridBagConstraints();
 
-      /*for (int i = 0; i < 10; i++) {
-          panelarr[i] = new BlogMessagePanel(new BlogMessage("Bigger amout of text here Bigger amout of text here Bigger amout of text here "));
-          panelarr[i].setBackground(Color.BLACK);
-          // set BlogMessages to go one after another
-          c.gridx = 0;
-          c.gridy = i;
-          c.gridwidth = 1;
-          // set weights to let messages expand upon window expansion
-          c.weightx = 1.0;
-          c.weighty = 1.0;
-          c.fill = GridBagConstraints.HORIZONTAL;
-          window.add(panelarr[i], c);
-      }*/
+      // something for time control here?
+
+      // setup login window
+      authController = new AuthController(this);
+      editorController = new EditorController(this);
+
+      // get user blog around here
+      // stubs for blog
+      User owner = new User("Stub", "stub");
+      Blog blog = new Blog(new ArrayList<BlogMessage>(), owner);
+      //blog.addMessage(new BlogMessage());
 
       //setup header
       JButton editorButton = new JButton("New Blog Message");
       editorButton.addActionListener(new ActionListener() {
 
         public void actionPerformed(ActionEvent e) {
-          toggleEditor(true);
+          editorController.toggle(true);
         }
       });
       c.gridx = 0;
@@ -66,7 +64,7 @@ public class UIController {
       editorButton.addActionListener(new ActionListener() {
 
         public void actionPerformed(ActionEvent e) {
-          showSearch();
+          //searchByKeyword();
         }
       });
       c.gridx = 1;
@@ -78,7 +76,6 @@ public class UIController {
       // setup main content pane
       contentPane = new JPanel();
       contentPane.setLayout(new GridBagLayout());
-      contentPane.setBackground(Color.BLACK);
       c.gridx = 0;
       c.gridy = 1;
       c.gridwidth = 2;
@@ -88,33 +85,30 @@ public class UIController {
       c.fill = GridBagConstraints.BOTH;
       window.add(contentPane, c);
 
-      // setup editor window
-      editorWindow = new JFrame("New Blog Message");
-      editorWindow.setLayout(new GridBagLayout());
-      editorWindow.setSize(800, 400);
-      editorWindow.setVisible(true);
-      editor = new JEditorPane();
-      c.gridx = 0;
-      c.gridy = 0;
-      c.gridwidth = 2;
-      c.gridheight = 1;
-      c.weightx = 1.0;
-      c.weighty = 1.0;
-      c.fill = GridBagConstraints.BOTH;
-      editorWindow.add(editor, c);
+      window.setVisible(false);
+    }
 
+    public void loggedIn() {
       window.setVisible(true);
     }
 
-    public void toggleEditor(boolean isEditor) {
-      editorWindow.setVisible(isEditor);
-    }
+    // this method should be in a custom search controller?
+    public ArrayList<BlogMessage> searchByKeyword(ArrayList<BlogMessage> messages, String keyword) {
+      ArrayList<BlogMessage> foundMessages = new ArrayList<BlogMessage>();
+      HTMLDocument document;
+      String text;
 
-    public Document getDocument() {
-      return editor.getDocument();
-    }
+      for (BlogMessage message : messages) {
+        document = message.getDocument();
+        try {
+          text = document.getText(0, document.getLength());
+          if(text.matches(keyword)) {
+            foundMessages.add(message);
+          }
+        } catch(Exception e) {
 
-    public void showSearch() {
-
+        }
+      }
+      return foundMessages;
     }
 }

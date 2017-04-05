@@ -7,20 +7,20 @@ package blog;
 
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.text.StyledDocument;
+import javax.swing.text.html.HTMLDocument;
 
 /**
  *
  * @author Liudas
  */
 public class BlogMessage {
-    private StyledDocument document;
+    private HTMLDocument document;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     private Date date;
 
     public BlogMessage() {}
 
-    public BlogMessage(StyledDocument document, Date date) {
+    public BlogMessage(HTMLDocument document, Date date) {
       this.document = document;
       this.date = date;
     }
@@ -43,14 +43,14 @@ public class BlogMessage {
     /**
      * @return the document
      */
-    public StyledDocument getDocument() {
+    public HTMLDocument getDocument() {
         return this.document;
     }
 
     /**
      * @param document the document to set
      */
-    public void setDocument(StyledDocument document) {
+    public void setDocument(HTMLDocument document) {
         this.document = document;
     }
 
