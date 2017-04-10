@@ -11,7 +11,6 @@ public class EditorController {
     }
 
     public boolean save(HTMLDocument document) {
-      // save da fuckin document here
       return true;
     }
     public boolean image() {

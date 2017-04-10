@@ -19,7 +19,6 @@ public class AuthController {
   }
 
   public boolean login(String username, String password) {
-    // return user object or just bool?
     main.loggedIn();
     return true;
   }

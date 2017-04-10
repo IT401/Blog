@@ -35,7 +35,6 @@ public class MainController {
       blogView.toggle(true);
     }
 
-    // ????refactor to one function that accepts a view and a boolean
     public void toggleEditor(boolean isVisible) {
       editorView.toggle(isVisible);
     }
@@ -52,7 +51,7 @@ public class MainController {
       timeView.toggle(isVisible);
     }
 
-    // this method should be in a custom search controller?
+    // move method to a custom search controller
     public ArrayList<BlogMessage> searchByKeyword(ArrayList<BlogMessage> messages, String keyword) {
       ArrayList<BlogMessage> foundMessages = new ArrayList<BlogMessage>();
       HTMLDocument document;
