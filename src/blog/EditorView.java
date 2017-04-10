@@ -1,7 +1,6 @@
 package blog;
 
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -17,7 +16,6 @@ public class EditorView extends View {
   public EditorView(EditorController controller) {
     super("New Blog Message");
     this.controller = controller;
-    this.setLayout(new GridBagLayout());
     this.setSize(800, 400);
 
     GridBagConstraints c = new GridBagConstraints();

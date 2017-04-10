@@ -37,6 +37,8 @@ public class User {
         this.pass = pass;
     }
 
-
-
+    @Override
+    public String toString() {
+      return username + " " + pass;
+    }
 }

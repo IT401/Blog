@@ -2,13 +2,19 @@ package blog;
 
 public class AuthController {
   private MainController main;
+  private UserModel model;
 
-  public AuthController(MainController controller) {
+  public AuthController(MainController controller, UserModel model) {
     main = controller;
+    this.model = model;
   }
 
   public boolean register(String username, String password) {
-    // save user to 'database'
+    if ("".equals(username) || "".equals(password) || model.userExists(username)) {
+      return false;
+    }
+    model.addUser(username, password);
+    main.loggedIn();
     return true;
   }
 

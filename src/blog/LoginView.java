@@ -1,7 +1,6 @@
 package blog;
 
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -20,8 +19,7 @@ public class LoginView extends View {
      super("Blog");
      this.controller = controller;
      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     this.setLayout(new GridBagLayout());
-     this.setSize(800, 400);
+     this.setSize(400, 200);
 
      GridBagConstraints c = new GridBagConstraints();
 

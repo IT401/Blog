@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TimeController {
     private MainController main;
-    private Date date;
+    private Date date = new Date(1491400351113L);
 
     public TimeController(MainController controller) {
         main = controller;
@@ -19,11 +19,11 @@ public class TimeController {
     }
 
     public void increase() {
-
+      date.setTime(date.getTime() + 86400000);
     }
 
     public void decrease() {
-
+      date.setTime(date.getTime() - 86400000);
     }
 
 }
