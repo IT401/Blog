@@ -9,7 +9,7 @@ Functionality of the program extends to being able to show a list of blogs, show
 expand comments on it, enable conversations as well as being able to search for all sorts of criteria like user names, 
 date, keywords or phrases.
 
-By Edvardas Gervaitis ir Liudas Vasaris */
+By Edvardas Gervaitis ir Liudas Dzisevicius */
 public class Main {
 
     public static void main(String[] args) {

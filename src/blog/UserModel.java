@@ -18,7 +18,7 @@ public class UserModel {
     String[] splitLine;
     
     try {
-      file = new File("users.txt");
+      file = new File("test/users.txt");
       reader = new BufferedReader(new FileReader(file));
 
       while ((line = reader.readLine()) != null) {

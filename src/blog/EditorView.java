@@ -31,7 +31,6 @@ public class EditorView extends View {
 
     editor = new JEditorPane();
     editor.setContentType("text/html");
-    editor.setText("<p>Random shit</p><img src=':shiz.jpg' width=200 height=200 />");
     c.gridx = 0;
     c.gridy = 0;
     c.gridwidth = 2;
