@@ -5,6 +5,7 @@ import javax.swing.text.html.HTMLDocument;
 
 public class MainController {
     private BlogView blogView;
+    private MessageView messageView;
     private EditorView editorView;
     private LoginView loginView;
     private TimeView timeView;
@@ -32,11 +33,11 @@ public class MainController {
       ArrayList<BlogPanel> panels = new ArrayList<BlogPanel>();
       for (Blog blog : blogs) {
         for (BlogMessage message : blog.getMessages()) {
-          panels.add(new BlogPanel(message.getTitle(), blog.getOwner().getUsername()));
+          panels.add(new BlogPanel(message, blog.getOwner().getUsername(), this));
         }
       }
       blogView.setBlogPanels(panels);
-      
+      messageView = new MessageView(this);
       editorView = new EditorView(editorController);
       loginView = new LoginView(authController);
       timeView = new TimeView(timeController);
@@ -45,6 +46,12 @@ public class MainController {
     public void loggedIn() {
       blogView.toggle(true);
     }
+    
+    public void clickedBlogPanel(BlogMessage message) {
+      messageView.setMessage(message);
+      messageView.toggle(true);
+    }
+    
 
     public void toggleEditor(boolean isVisible) {
       editorView.toggle(isVisible);

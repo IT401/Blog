@@ -12,29 +12,37 @@ import javax.swing.border.Border;
 
 public class BlogPanel extends JPanel {
     GridBagConstraints c = new GridBagConstraints();
+    BlogMessage message;
     JTextField titleField;
     JTextField userField;
     
-    BlogPanel(String title, String username) {
+    BlogPanel(BlogMessage message, String username, MainController controller) {
       super();
       setLayout(new GridBagLayout());
-      setBackground(new Color(224,224,224));
+      setBackground(new Color(238,238,238));
       MouseListener backgroundChanger = new MouseListener() {
+        @Override
         public void mouseEntered(MouseEvent e) {
-          setBackground(new Color(189,189,189));
-        }
-
-        public void mouseExited(MouseEvent e) {
           setBackground(new Color(224,224,224));
         }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+          setBackground(new Color(238,238,238));
+        }
         
-        public void mouseClicked(MouseEvent e) {}
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            controller.clickedBlogPanel(message);
+        }
+        @Override
         public void mousePressed(MouseEvent e) {}  
+        @Override
         public void mouseReleased(MouseEvent e) {}
       };
       this.addMouseListener(backgroundChanger);
       
-      titleField = new JTextField(title) {
+      titleField = new JTextField(message.getTitle()) {
         @Override 
         public void setBorder(Border border) {} // stop from setting native border
       };
