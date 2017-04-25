@@ -19,11 +19,11 @@ public class TimeController {
     }
 
     public void increase() {
-      date.setTime(date.getTime() + 86400000);
+      date.setTime(date.getTime() + 86400000); // move date forwards one day
     }
 
     public void decrease() {
-      date.setTime(date.getTime() - 86400000);
+      date.setTime(date.getTime() - 86400000); // mode date backwards one day
     }
 
 }

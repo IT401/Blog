@@ -15,8 +15,6 @@ public class TimeView extends View {
         super("Time Control");
         this.controller = controller;
         
-        GridBagConstraints c = new GridBagConstraints();
-        
         addButton = new JButton("+");
         addButton.addActionListener(new ActionListener() {
     

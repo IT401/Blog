@@ -27,8 +27,6 @@ public class EditorView extends View {
     this.controller = controller;
     this.setSize(800, 400);
 
-    GridBagConstraints c = new GridBagConstraints();
-
     editor = new JEditorPane();
     editor.setContentType("text/html");
     c.gridx = 0;

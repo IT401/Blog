@@ -16,7 +16,6 @@ public class BlogView extends View {
       super("Blog");
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       this.setSize(800, 400);
-      GridBagConstraints c = new GridBagConstraints();
 
       JButton editorButton = new JButton("New Blog Message");
       editorButton.addActionListener(new ActionListener() {

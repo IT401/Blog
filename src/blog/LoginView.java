@@ -21,8 +21,6 @@ public class LoginView extends View {
      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      this.setSize(400, 200);
 
-     GridBagConstraints c = new GridBagConstraints();
-
      JLabel usernameLabel = new JLabel("Username");
      c.gridx = 0;
      c.gridy = 0;
