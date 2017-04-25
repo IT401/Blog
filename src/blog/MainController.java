@@ -28,6 +28,15 @@ public class MainController {
 
       // setup views
       blogView = new BlogView(this);
+      ArrayList<Blog> blogs = blogModel.getBlogs();
+      ArrayList<BlogPanel> panels = new ArrayList<BlogPanel>();
+      for (Blog blog : blogs) {
+        for (BlogMessage message : blog.getMessages()) {
+          panels.add(new BlogPanel(message.getTitle(), blog.getOwner().getUsername()));
+        }
+      }
+      blogView.setBlogPanels(panels);
+      
       editorView = new EditorView(editorController);
       loginView = new LoginView(authController);
       timeView = new TimeView(timeController);
@@ -56,6 +65,10 @@ public class MainController {
     // decouple data from models to main controller & pass as parameters when needed
     public ArrayList<Blog> getBlogs() {
       return blogModel.getBlogs();
+    }
+    
+    public ArrayList<BlogMessage> getBlogMessages() {
+      return blogModel.getBlogMessages();
     }
 
     // move method to a custom search controller

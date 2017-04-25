@@ -36,4 +36,12 @@ public class BlogModel {
       return blogs;
     }
     
+    ArrayList<BlogMessage> getBlogMessages() {
+      ArrayList<BlogMessage> messages = new ArrayList<BlogMessage>();
+      for (Blog blog : blogs) {
+        messages.addAll(blog.getMessages());
+      }
+      return messages;
+    }
+    
 }
