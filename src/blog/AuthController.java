@@ -13,7 +13,7 @@ public class AuthController {
     if ("".equals(username) || "".equals(password) || model.userExists(username)) {
       return false;
     }
-    model.addUser(username, password);
+    model.addUser(model.getUserCount(), username, password); // replace id with hash
     main.loggedIn();
     return true;
   }

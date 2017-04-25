@@ -23,7 +23,7 @@ public class UserModel {
 
       while ((line = reader.readLine()) != null) {
         splitLine = line.split(" ");
-        users.add(new User(splitLine[0], splitLine[1]));
+        users.add(new User(Integer.parseInt(splitLine[0]), splitLine[1], splitLine[2]));
       }
       
       reader.close();
@@ -48,8 +48,8 @@ public class UserModel {
     }
   }
   
-  public void addUser(String username, String password) {
-    addUser(new User(username, password));
+  public void addUser(int id, String username, String password) {
+    addUser(new User(id, username, password));
   }
   
   public boolean userExists(String username) {
@@ -68,6 +68,10 @@ public class UserModel {
       }
     }
     return false;
+  }
+  
+  public int getUserCount() {
+    return users.size();
   }
   
   public void printUsers() {

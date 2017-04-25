@@ -1,17 +1,37 @@
 package blog;
 
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.text.Element;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 
 public class BlogMessage {
     private HTMLDocument document;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     private Date date;
-
-    public BlogMessage() {}
+    private String title;
+    
+    public BlogMessage(String html, Date date) {
+      HTMLEditorKit htmlKit = new HTMLEditorKit();
+      HTMLDocument document = (HTMLDocument) htmlKit.createDefaultDocument();
+      try {
+        htmlKit.read(new StringReader(html), document, 0);
+        Element h1 = document.getElement(document.getDefaultRootElement(), StyleConstants.NameAttribute, HTML.Tag.H1);
+        this.title = document.getText(h1.getStartOffset(), h1.getEndOffset() - h1.getStartOffset());
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+      
+      this.document = document;
+      this.date = date;
+    }
 
     public BlogMessage(HTMLDocument document, Date date) {
+      this.title = document.getElement(document.getDefaultRootElement(), StyleConstants.NameAttribute, HTML.Tag.H1).getName();
       this.document = document;
       this.date = date;
     }
@@ -29,6 +49,20 @@ public class BlogMessage {
             throw new ArrayIndexOutOfBoundsException("Comment ID can't be less than 0");
         }
         comments.remove(id);
+    }
+    
+    /**
+     * @return the document
+     */
+    public String getTitle() {
+        return this.title;
+    }
+
+    /**
+     * @param document the document to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**

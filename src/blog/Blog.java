@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public class Blog {
     private ArrayList<BlogMessage> messages = new ArrayList<BlogMessage>();
     private User owner;
+    
+    public Blog(User owner) {
+      this.owner = owner;
+    }
 
     public Blog(ArrayList<BlogMessage> messages, User owner) {
       this.messages = messages;

@@ -14,10 +14,12 @@ public class MainController {
     private TimeController timeController;
     
     private UserModel userModel;
+    private BlogModel blogModel;
 
     public MainController() {
       // setup models
       userModel = new UserModel();
+      blogModel = new BlogModel(userModel);
       
       // setup controllers
       authController = new AuthController(this, userModel);
@@ -49,6 +51,11 @@ public class MainController {
     
     public void toggleTime(boolean isVisible) {
       timeView.toggle(isVisible);
+    }
+    
+    // decouple data from models to main controller & pass as parameters when needed
+    public ArrayList<Blog> getBlogs() {
+      return blogModel.getBlogs();
     }
 
     // move method to a custom search controller

@@ -20,8 +20,6 @@ public class EditorView extends View {
   private JButton imageButton;
   final JFileChooser fc = new JFileChooser();
   
-  
-
   public EditorView(EditorController controller) {
     super("New Blog Message");
     this.controller = controller;
@@ -54,9 +52,7 @@ public class EditorView extends View {
                         
             {}}
     });
-    
-    
-    
+      
     c.gridx = 0;
     c.gridy = 1;
     c.gridwidth = 2;
@@ -87,6 +83,7 @@ public class EditorView extends View {
     toggle(false);
     
   }
+  
   HTMLDocument getDocument() {
     return (HTMLDocument)editor.getDocument();
   }

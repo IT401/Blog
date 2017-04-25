@@ -1,14 +1,30 @@
 package blog;
 
 public class User {
+    private int id;
     private String username;
     private String pass;
 
-    public User(String username, String pass) {
+    public User(int id, String username, String pass) {
+      this.id = id;
       this.username = username;
       this.pass = pass;
     }
+    
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
 
+    /**
+     * @param username the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     /**
      * @return the username
      */
@@ -39,6 +55,6 @@ public class User {
 
     @Override
     public String toString() {
-      return username + " " + pass;
+      return id + " " + username + " " + pass;
     }
 }
