@@ -1,6 +1,7 @@
 package blog;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.text.html.HTMLDocument;
 
 public class MainController {
@@ -41,6 +42,10 @@ public class MainController {
       editorView = new EditorView(editorController);
       loginView = new LoginView(authController);
       timeView = new TimeView(timeController);
+    }
+    
+    public Date getGlobalDate() {
+        return timeController.getDate();
     }
 
     public void loggedIn() {

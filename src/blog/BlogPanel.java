@@ -6,18 +6,23 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 public class BlogPanel extends JPanel {
+    MainController controller;
     GridBagConstraints c = new GridBagConstraints();
     BlogMessage message;
     JTextField titleField;
     JTextField userField;
+    JTextField dateField;
     
     BlogPanel(BlogMessage message, String username, MainController controller) {
       super();
+      this.message = message;
+      this.controller = controller;
       setLayout(new GridBagLayout());
       setBackground(new Color(238,238,238));
       MouseListener backgroundChanger = new MouseListener() {
@@ -69,5 +74,21 @@ public class BlogPanel extends JPanel {
       userField.addMouseListener(backgroundChanger);
       c.gridy = 1;
       add(userField, c);
+      
+      dateField = new JTextField(calculateDate(message.getDate())) {
+        @Override 
+        public void setBorder(Border border) {} // stop from setting native border
+      };
+      dateField.setEditable(false);
+      //dateField.setHorizontalAlignment(JTextField.RIGHT);
+      dateField.setOpaque(false);
+      dateField.addMouseListener(backgroundChanger);
+      c.gridy = 1;
+      add(dateField, c);
+    }
+    
+    private String calculateDate(Date creationDate) {
+        // calc time passed here
+        return creationDate.toString();
     }
 }
