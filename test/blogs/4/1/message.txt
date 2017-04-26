@@ -1,6 +1,6 @@
 <h1>In the desert with Abercrombie</h1>
 <p>82 degrees! It was 82 degrees and sunny yesterday in the desert and I loved every bit of it. The dry air and hot sun make me very happy. It’s funny how many times we change our outfits when we work on our house. We have our work clothes and then our “going out” clothes. But we go out to breakfast, lunch, and dinner usually because there isn’t an operational kitchen in the house. So we change our clothes about 3 times a day. It’s not 3 different outfits, but ya…</p>
-<img src='test/blogs/4/me.jpg' width=200 />
+<img src='file:test/blogs/4/1/me.jpg' />
 <p>This time around I brought my new henley from Abercrombie that may be my new favorite shirt. I actually bought two of them and the worn in look of the color wash it perfect. And my wife got really googly eyed at me when I wore them, so that’s a plus. And for my morning run to coffee and popped on the button up for a little more warmth.</p>
-<img src='test/blogs/4/desert.jpg' width=200 />
+<img src='file:test/blogs/4/1/desert.jpg' width='500' height='auto' />
 <p>The next day I wore the other color henley that I bought and wore some khaki skinny jeans. I have been wearing a lot of khaki lately. I particularly like khaki jeans because of the texture of the denim. It helps to break up the pants so it isn’t a solid tan. We popped into Palm Springs for breakfast before heading back home and this awesome orange car needed to be in my photos. And since we arrived in Paris for the first time 4 years ago today, and our friends are currently there, we figured we’d eat breakfast at the french cafe L’Atelier in Palm Springs to reminisce about time in Paris.</p>

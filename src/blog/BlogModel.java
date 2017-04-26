@@ -12,10 +12,10 @@ public class BlogModel {
     ArrayList<Blog> blogs = new ArrayList<Blog>();
     
     BlogModel(UserModel userModel) {      
-      for (int i = 1; i < userModel.getUserCount(); i++) {
+      for (int i = 0; i < userModel.getUserCount(); i++) {
         Blog blog = new Blog(userModel.getUser(i));
         
-        File userFolder = new File("test/blogs/"+i);
+        File userFolder = new File("test/blogs/"+(i+1));
         String[] folders = userFolder.list();
 
         for (String folder : folders) {          
