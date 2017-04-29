@@ -45,7 +45,7 @@ public class LoginView extends View {
      loginButton = new JButton("Login");
      loginButton.addActionListener(new ActionListener() {
        public void actionPerformed(ActionEvent e) {
-         if (controller.login(getUsername(), getPassword())) {
+         if (controller.clickedLoginButton(getUsername(), getPassword())) {
           toggle(false);
          }
        }
@@ -57,7 +57,7 @@ public class LoginView extends View {
      registerButton = new JButton("Register");
      registerButton.addActionListener(new ActionListener() {
        public void actionPerformed(ActionEvent e) {
-         if (controller.register(getUsername(), getPassword())) {
+         if (controller.clickedRegisterButton(getUsername(), getPassword())) {
           toggle(false);
          }
        }
@@ -68,11 +68,11 @@ public class LoginView extends View {
      toggle(true);
    }
 
-    public String getUsername() {
+    private String getUsername() {
       return usernameField.getText();
     }
 
-    public String getPassword() {
+    private String getPassword() {
       return new String(passwordField.getPassword());
     }
 }

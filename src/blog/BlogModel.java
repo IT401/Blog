@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class BlogModel {
-    ArrayList<Blog> blogs = new ArrayList<Blog>();
+  ArrayList<Blog> blogs = new ArrayList<Blog>();
     
-    BlogModel(UserModel userModel) {      
-      for (int i = 0; i < userModel.getUserCount(); i++) {
-        Blog blog = new Blog(userModel.getUser(i));
+    public void readBlogs(ArrayList<User> users) {  
+      for (int i = 0; i < users.size(); i++) {
+        Blog blog = new Blog(users.get(i));
         
         File userFolder = new File("test/blogs/"+(i+1));
         String[] folders = userFolder.list();
@@ -21,7 +21,7 @@ public class BlogModel {
         for (String folder : folders) {          
           try {
             String html = new String(Files.readAllBytes(Paths.get(userFolder.toString()+"/"+folder+"/message.txt")));
-            BlogMessage message = new BlogMessage(html, new Date(Files.readAttributes(Paths.get(userFolder.toString()+"/"+folder+"/message.txt"), BasicFileAttributes.class).creationTime().toMillis()));
+            BlogMessage message = new BlogMessage(html, blog.getOwner(), new Date(Files.readAttributes(Paths.get(userFolder.toString()+"/"+folder+"/message.txt"), BasicFileAttributes.class).creationTime().toMillis()));
             blog.addMessage(message);
           } catch (IOException e) {
             System.out.println(e);
@@ -30,17 +30,19 @@ public class BlogModel {
         
         blogs.add(blog);       
       }
-    }
+    }   
     
-    ArrayList<Blog> getBlogs() {
+    public ArrayList<Blog> getBlogs() {
       return blogs;
-    }
+    } 
     
-    ArrayList<BlogMessage> getBlogMessages() {
+    public ArrayList<BlogMessage> getBlogMessages() {
       ArrayList<BlogMessage> messages = new ArrayList<BlogMessage>();
+      
       for (Blog blog : blogs) {
         messages.addAll(blog.getMessages());
       }
+      
       return messages;
     }
     

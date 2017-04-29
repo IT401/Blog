@@ -1,5 +1,6 @@
 package blog;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +20,7 @@ public class TimeView extends View {
         addButton.addActionListener(new ActionListener() {
     
           public void actionPerformed(ActionEvent e) {
-             controller.increase();
-             updateDateField();
+             controller.clickedAddButton();
           }
         });
         c.gridx = 0;
@@ -34,8 +34,7 @@ public class TimeView extends View {
         subButton.addActionListener(new ActionListener() {
     
           public void actionPerformed(ActionEvent e) {
-             controller.decrease();
-             updateDateField();
+             controller.clickedSubButton();
           }
         });
         c.gridx = 2;
@@ -43,13 +42,13 @@ public class TimeView extends View {
         
         dateField = new JTextField();
         dateField.setEditable(false);
-        updateDateField();
+        dateField.setPreferredSize(new Dimension(200, 25));
         c.gridx = 1;
         add(dateField, c);
         pack();
     }
     
-    private void updateDateField() {
-      dateField.setText(controller.getDate().toString());
+    public void updateDateField(String date) {
+      dateField.setText(date);
     }
 }

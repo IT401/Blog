@@ -36,6 +36,10 @@ public class UserModel {
     return users.get(id);
   }
   
+  public ArrayList<User> getUsers() {
+    return users;
+  }
+  
   public void addUser(User user) {
     users.add(user);
     try {

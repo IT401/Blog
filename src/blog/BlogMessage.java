@@ -11,11 +11,12 @@ import javax.swing.text.html.HTMLEditorKit;
 
 public class BlogMessage {
     private HTMLDocument document;
-    private ArrayList<Comment> comments = new ArrayList<Comment>();
-    private Date date;
     private String title;
+    private User owner;
+    private Date date;
+    private ArrayList<Comment> comments = new ArrayList<Comment>();
     
-    public BlogMessage(String html, Date date) {
+    public BlogMessage(String html, User owner, Date date) {
       HTMLEditorKit htmlKit = new HTMLEditorKit();
       HTMLDocument document = (HTMLDocument) htmlKit.createDefaultDocument();
       try {
@@ -28,12 +29,14 @@ public class BlogMessage {
       
       this.document = document;
       this.date = date;
+      this.owner = owner;
     }
 
-    public BlogMessage(HTMLDocument document, Date date) {
+    public BlogMessage(HTMLDocument document, User owner, Date date) {
       this.title = document.getElement(document.getDefaultRootElement(), StyleConstants.NameAttribute, HTML.Tag.H1).getName();
       this.document = document;
       this.date = date;
+      this.owner = owner;
     }
 
     public ArrayList<Comment> getComments() {
@@ -91,5 +94,19 @@ public class BlogMessage {
      */
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    /**
+     * @return the owner
+     */
+    public User getOwner() {
+        return owner;
+    }
+
+    /**
+     * @param owner the owner to set
+     */
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
