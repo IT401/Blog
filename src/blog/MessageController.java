@@ -13,7 +13,15 @@ public class MessageController {
       view.setMessage(message);
     }
     
-    public void showView() {
-      view.toggle(true);
+    public void clickedReturnButton() {
+      main.showMessagePanels();
+    }
+    
+    public MessageView getView() {
+      return view;
+    }
+    
+    public void showView(boolean show) {
+      view.setVisible(show);
     }
 }

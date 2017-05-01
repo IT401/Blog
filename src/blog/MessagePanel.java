@@ -13,20 +13,21 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 public class MessagePanel extends JPanel {
-    BlogController controller;
+    MessagePanelController controller;
     GridBagConstraints c = new GridBagConstraints();
     BlogMessage message;
     JTextField titleField;
     JTextField userField;
     JTextField dateField;
     
-    MessagePanel(BlogMessage message, String time, BlogController controller) {
+    MessagePanel(BlogMessage message, String time, MessagePanelController controller) {
       super();
       this.message = message;
       this.controller = controller;
       setLayout(new GridBagLayout());
       setBackground(new Color(238,238,238));
       setPreferredSize(new Dimension(0, 80));
+      setMaximumSize(new Dimension((int)getMaximumSize().getWidth(), 100));
       MouseListener backgroundChanger = new MouseListener() {
         @Override
         public void mouseEntered(MouseEvent e) {

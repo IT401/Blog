@@ -5,7 +5,7 @@ import java.util.Date;
 public class TimeController {
     private MainController main;
     private TimeView view;
-    private Date date = new Date(1493485753660L);
+    private Date date = new Date();
 
     public TimeController(MainController controller) {
         main = controller;
@@ -19,6 +19,14 @@ public class TimeController {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+    
+    public TimeView getView() {
+      return view;
+    }
+    
+    public void showView(boolean show) {
+      view.setVisible(show);
     }
 
     public void clickedAddButton() {
@@ -34,7 +42,7 @@ public class TimeController {
     }
     
     public void showView() {
-      view.toggle(true);
+      view.setVisible(true);
     }
 
 }

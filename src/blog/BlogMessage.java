@@ -10,13 +10,14 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
 public class BlogMessage {
+    private int id;
     private HTMLDocument document;
     private String title;
     private User owner;
     private Date date;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     
-    public BlogMessage(String html, User owner, Date date) {
+    public BlogMessage(int id, String html, User owner, Date date) {
       HTMLEditorKit htmlKit = new HTMLEditorKit();
       HTMLDocument document = (HTMLDocument) htmlKit.createDefaultDocument();
       try {
@@ -27,13 +28,23 @@ public class BlogMessage {
         System.out.println(e);
       }
       
+      this.id = id;
       this.document = document;
       this.date = date;
       this.owner = owner;
     }
 
-    public BlogMessage(HTMLDocument document, User owner, Date date) {
+    public BlogMessage(int id, HTMLDocument document, User owner, Date date) {
+      this.id = id;
       this.title = document.getElement(document.getDefaultRootElement(), StyleConstants.NameAttribute, HTML.Tag.H1).getName();
+      this.document = document;
+      this.date = date;
+      this.owner = owner;
+    }
+    
+    public BlogMessage(int id, HTMLDocument document, String title, User owner, Date date) {
+      this.id = id;
+      this.title = title;
       this.document = document;
       this.date = date;
       this.owner = owner;
@@ -66,6 +77,20 @@ public class BlogMessage {
      */
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return this.id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**

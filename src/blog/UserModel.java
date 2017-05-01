@@ -36,6 +36,15 @@ public class UserModel {
     return users.get(id);
   }
   
+  public User getUser(String username) {
+    for (User user : users) {
+      if (user.getUsername().compareTo(username) == 0) {
+        return user;
+      }
+    }
+    return null;
+  }
+  
   public ArrayList<User> getUsers() {
     return users;
   }
@@ -47,6 +56,10 @@ public class UserModel {
       writer.write(user.toString());
       writer.newLine();
       writer.close();
+      File userFolder = new File("test/blogs/"+user.getId());
+      if (userFolder.mkdir()) {
+        System.out.println("dir should be created");
+      }  
     } catch (Exception e) {
       System.out.println(e);
     }
