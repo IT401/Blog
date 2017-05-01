@@ -2,19 +2,19 @@ package blog;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.text.html.HTMLDocument;
-import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.Element;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.html.HTML;
 
 public class EditorView extends JPanel {
   private EditorController controller;
@@ -22,7 +22,7 @@ public class EditorView extends JPanel {
   private JButton saveButton;
   private JButton imageButton;
   private JTextField titleField;
-  final JFileChooser fc = new JFileChooser();
+  private final JFileChooser chooser = new JFileChooser();
   
   EditorView(EditorController controller) {
     super();
@@ -83,19 +83,19 @@ public class EditorView extends JPanel {
     
     imageButton = new JButton("Upload an image");
     imageButton.addActionListener(new ActionListener() {
-
       public void actionPerformed(ActionEvent e) {
-        Image image = null;
         try {
-        
-        fc.addChoosableFileFilter(new ImageFilter());
-        fc.setAcceptAllFileFilterUsed(false);
-        fc.showOpenDialog(imageButton);
-        File image1 = fc.getSelectedFile();  
-        image = ImageIO.read(image1);
-           } catch (IOException x) 
-                        
-            {}}
+          chooser.setFileFilter(new FileNameExtensionFilter("JPG, PNG or GIF images", "jpg", "gif", "png"));
+          int returnVal = chooser.showOpenDialog(imageButton);
+          if(returnVal == JFileChooser.APPROVE_OPTION) {
+            HTMLDocument document = (HTMLDocument)editor.getDocument();
+            Element p = document.getElement(document.getDefaultRootElement(), StyleConstants.NameAttribute, HTML.Tag.P);
+            document.insertAfterEnd(p, "<img src='file:"+chooser.getSelectedFile().getPath().replace("\\","\\\\")+"'/>");
+          }
+        } catch (Exception ex) {
+          System.out.println(ex);
+        }
+      }
     });
       
     c.gridx = 0;

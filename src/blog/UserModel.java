@@ -57,9 +57,7 @@ public class UserModel {
       writer.newLine();
       writer.close();
       File userFolder = new File("test/blogs/"+user.getId());
-      if (userFolder.mkdir()) {
-        System.out.println("dir should be created");
-      }  
+      userFolder.mkdir();  
     } catch (Exception e) {
       System.out.println(e);
     }

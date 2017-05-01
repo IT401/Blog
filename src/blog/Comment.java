@@ -5,8 +5,11 @@ import java.util.Date;
 public class Comment {
     private User user;
     private String text;
-    private Date date;
-
+    
+    Comment(User user, String text) {
+      this.user = user;
+      this.text = text;
+    }
 
     /**
      * @return the user
@@ -34,19 +37,5 @@ public class Comment {
      */
     public void setText(String text) {
         this.text = text;
-    }
-
-    /**
-     * @return the date
-     */
-    public Date getDate() {
-        return this.date;
-    }
-
-    /**
-     * @param date the date to set
-     */
-    public void setDate(Date date) {
-        this.date = date;
     }
 }

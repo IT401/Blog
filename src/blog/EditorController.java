@@ -23,12 +23,8 @@ public class EditorController {
     }
 
     public boolean save(String title, HTMLDocument document) {
-      model.addBlogMessage(title, document, main.getActiveUser());
+      model.addBlogMessage(title, document, main.getDate(), main.getActiveUser());
       main.showAllMessagePanels();
-      return true;
-    }
-    
-    public boolean image() {
       return true;
     }
 }

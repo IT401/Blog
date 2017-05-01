@@ -65,6 +65,10 @@ public class BlogMessage {
         comments.remove(id);
     }
     
+    public String toString() {
+      return id + " " + title + " " + date + " " + owner.getUsername();
+    }
+    
     /**
      * @return the document
      */

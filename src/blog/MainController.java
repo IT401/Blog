@@ -20,11 +20,12 @@ public class MainController {
     
     private UserModel userModel;
     private BlogModel blogModel;
+    private CommentModel commentModel;
 
     public MainController() {
       window = new JFrame("Blog App");
       window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      window.setSize(800, 400);
+      window.setSize(1000, 600);
       window.setLayout(new GridBagLayout());
       window.setVisible(true);
       
@@ -32,13 +33,15 @@ public class MainController {
       userModel = new UserModel();
       blogModel = new BlogModel();
       blogModel.readBlogs(userModel.getUsers());
+      commentModel = new CommentModel();
+      commentModel.readComments(blogModel.getBlogMessages(), userModel);
       
       // setup controllers
       authController = new AuthController(this, userModel);
       navigationController = new NavigationController(this);
       timeController = new TimeController(this);  
       messagePanelController = new MessagePanelController(this, blogModel);
-      messageController = new MessageController(this);
+      messageController = new MessageController(this, commentModel);
       editorController = new EditorController(this, blogModel);
       
       attachViews();
@@ -87,6 +90,11 @@ public class MainController {
       editorController.showView(false);
     }
     
+    public void createdNewUser(User user) {
+      blogModel.addBlog(user);
+      showBlog();
+    }
+    
     public User getActiveUser() {
       return authController.getActiveUser();
     }
@@ -133,7 +141,7 @@ public class MainController {
     }
     
     public Date getDate() {
-      return timeController.getDate();
+      return new Date(timeController.getDate().getTime());
     }
     
     public void dateChanged(Date date) {

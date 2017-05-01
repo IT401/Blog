@@ -21,9 +21,9 @@ public class AuthController {
       return false;
     }
     User user = new User(model.getUserCount()+1, username, password);
-    model.addUser(user); // replace id with hash
+    main.createdNewUser(user);
+    model.addUser(user);
     activeUser = user;
-    main.showBlog();
     return true;
   }
 
