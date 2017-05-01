@@ -7,6 +7,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+/**
+ * Handles reading and writing of user data. All user data is saved to a text file.
+ */
 public class UserModel {
   private File file;
   private ArrayList<User> users = new ArrayList<User>();

@@ -7,6 +7,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+/**
+ * Handles message panel GUI.
+ */
 public class MessagePanelView extends JPanel {
   private MessagePanelController controller;
   private JPanel panelPane;

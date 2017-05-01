@@ -7,11 +7,14 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+
+/**
+ * A panel for displaying one message.
+ */
 public class MessagePanel extends JPanel {
     MessagePanelController controller;
     GridBagConstraints c = new GridBagConstraints();

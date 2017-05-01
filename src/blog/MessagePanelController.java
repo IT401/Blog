@@ -11,6 +11,11 @@ public class MessagePanelController {
   private BlogModel model;
   private ArrayList<MessagePanel> panels = new ArrayList<MessagePanel>();
   
+  /**
+   * Handles message panel display and date renewing.
+   * @param main Main controller.
+   * @param model Message & blog data control model.
+   */
   MessagePanelController(MainController main, BlogModel model) {
     this.main = main;
     this.model = model;
@@ -62,6 +67,12 @@ public class MessagePanelController {
     view.setVisible(show);
   }
   
+  /**
+   * Searches the messages from a given keyword by parsing HTMLDocument content.
+   * @param messages Blog messages.
+   * @param keyword Search query string.
+   * @return ArrayList of messages that the keyword was found in.
+   */
   private ArrayList<BlogMessage> searchByKeyword(ArrayList<BlogMessage> messages, String keyword) {
     ArrayList<BlogMessage> foundMessages = new ArrayList<BlogMessage>();
     HTMLDocument document;
@@ -82,6 +93,12 @@ public class MessagePanelController {
     return foundMessages;
   }
   
+  /**
+   * Calculates how much time passed between two dates, formats it to closest time unit and returns as a string.
+   * @param creationDate Time is calculated from this date.
+   * @param current Time is calculated until this date.
+   * @return String of time passed with appended time unit.
+   */
   private String calculateTime(Date creationDate, Date current) {
     long time = current.getTime() - creationDate.getTime();
     if (time < 60000) {

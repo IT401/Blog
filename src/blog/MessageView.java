@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * Handles message display GUI.
+ */
 public class MessageView extends JPanel {
     private MessageController controller;
     private BlogMessage message;

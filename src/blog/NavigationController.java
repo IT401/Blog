@@ -1,12 +1,17 @@
 package blog;
 
+/**
+ * Handles navigation and search functionality.
+ */
 public class NavigationController {
   MainController main;
   NavigationView view;
+  UserModel model;
   
-  NavigationController(MainController main) {
+  NavigationController(MainController main, UserModel model) {
     this.main = main;
-    view = new NavigationView(this);
+    this.model = model;
+    view = new NavigationView(this, model.getUsers());
   }
   
   public void clickedEditorButton() {
@@ -25,6 +30,10 @@ public class NavigationController {
     if (!"".equals(keyword)) {
       main.showFilteredMessagePanels(keyword);
     }
+  }
+  
+  public void selectedUser(User user) {
+    main.showFilteredMessagePanels(user);
   }
   
   public NavigationView getView() {

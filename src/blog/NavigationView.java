@@ -6,10 +6,16 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Handles navigation and search GUI.
+ */
 public class NavigationView extends JPanel {
     private NavigationController controller;
     private JButton editorButton;
@@ -18,16 +24,16 @@ public class NavigationView extends JPanel {
     private JButton searchButton;
     private JTextField searchField;
     
-    NavigationView(NavigationController controller) {
+    NavigationView(NavigationController controller, ArrayList<User> users) {
       super();
       this.controller = controller;
       setPreferredSize(new Dimension(50, 0));
       setLayout(new GridBagLayout());
       
-      setupComponents();
+      setupComponents(users);
     }
     
-    private void setupComponents() {
+    private void setupComponents(ArrayList<User> users) {
       GridBagConstraints c = new GridBagConstraints();
       JPanel container = new JPanel();
       container.setLayout(new GridBagLayout());
@@ -85,6 +91,22 @@ public class NavigationView extends JPanel {
       c.gridy = 4;
       c.insets = new Insets(0, 0, 0, 0);
       container.add(searchButton, c);
+      
+      JLabel userLabel = new JLabel("Search by user");
+      c.gridy = 5;
+      container.add(userLabel, c);
+      
+      JComboBox userBox = new JComboBox(users.toArray());
+      userBox.addActionListener(new ActionListener() {
+
+        public void actionPerformed(ActionEvent e) {
+          JComboBox ub = (JComboBox)e.getSource();
+          User user = (User)ub.getSelectedItem();
+          controller.selectedUser(user);
+        }
+      });
+      c.gridy = 6;
+      container.add(userBox, c);
     }
     
     private String getKeyword() {

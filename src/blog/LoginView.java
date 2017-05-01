@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/**
+ * Handles logging in and registering GUI.
+ */
 public class LoginView extends JPanel {
   private AuthController controller;
   private JButton registerButton, loginButton;

@@ -1,13 +1,13 @@
 package blog;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.Date;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
+/**
+ * Handles the main application window structure and communication between models and controllers.
+ */
 public class MainController {
     private JFrame window;
     
@@ -23,6 +23,7 @@ public class MainController {
     private CommentModel commentModel;
 
     public MainController() {
+      // setup main window 
       window = new JFrame("Blog App");
       window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       window.setSize(1000, 600);
@@ -38,7 +39,7 @@ public class MainController {
       
       // setup controllers
       authController = new AuthController(this, userModel);
-      navigationController = new NavigationController(this);
+      navigationController = new NavigationController(this, userModel);
       timeController = new TimeController(this);  
       messagePanelController = new MessagePanelController(this, blogModel);
       messageController = new MessageController(this, commentModel);
@@ -47,6 +48,9 @@ public class MainController {
       attachViews();
     }
     
+    /**
+     * Attach different GUI parts to the main window using GridBag layout.
+     */
     public void attachViews() {
       GridBagConstraints c = new GridBagConstraints();
       
@@ -95,10 +99,18 @@ public class MainController {
       showBlog();
     }
     
+    /**
+     * Returns currently logged in user.
+     * @return Logged in User object.
+     */
     public User getActiveUser() {
       return authController.getActiveUser();
     }
-
+    
+    /**
+     * Sends given message to the controller and enables message display GUI.
+     * @param message BlogMessage to be shown.
+     */
     public void showMessage(BlogMessage message) {
       messageController.setMessage(message);
       messageController.showView(true);
@@ -106,33 +118,61 @@ public class MainController {
       editorController.showView(false);
     }
     
+    /**
+     * Shows messages in message panel GUI according to a keyword.
+     * @param keyword Search query string.
+     */
     public void showFilteredMessagePanels(String keyword) {
       messagePanelController.filterMessagePanels(keyword);
       showMessagePanels();
     }
     
+    /**
+     * Shows messages in message panel GUI belonging to user.
+     * @param keyword Search query string.
+     */
+    public void showFilteredMessagePanels(User user) {
+      messagePanelController.setupMessagePanels(user);
+      showMessagePanels();
+    }
+    
+    /**
+     * Shows all messages in message panel GUI.
+     */
     public void showAllMessagePanels() {
       messagePanelController.setupMessagePanels();
       showMessagePanels();
     }
     
+    /**
+     * Shows current users messages in message panel GUI.
+     */
     public void showOwnMessagePanels() {
       messagePanelController.setupMessagePanels(authController.getActiveUser());
       showMessagePanels();
     }
     
+    /**
+     * Enables message panel GUI.
+     */
     public void showMessagePanels() {
       messagePanelController.showView(true);
       messageController.showView(false);
       editorController.showView(false);
     }
     
+    /**
+     * Enables editor GUI.
+     */
     public void showEditor() {
       editorController.showView(true);
       messageController.showView(false);
       messagePanelController.showView(false);
     }
     
+    /**
+     * Enables main GUI elements after user has logged in/registered.
+     */
     public void showBlog() {
       navigationController.showView(true);
       timeController.showView(true);
@@ -140,10 +180,18 @@ public class MainController {
       authController.showView(false);
     }
     
+    /**
+     * Returns "current" date.
+     * @return Date object.
+     */
     public Date getDate() {
       return new Date(timeController.getDate().getTime());
     }
     
+    /**
+     * Is called when "current" date has been changed. Notifies other elements.
+     * @param date 
+     */
     public void dateChanged(Date date) {
       messagePanelController.updatePanelDates(date);
     }

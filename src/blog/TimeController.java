@@ -2,6 +2,9 @@ package blog;
 
 import java.util.Date;
 
+/**
+ * Handles time control functionality.
+ */
 public class TimeController {
     private MainController main;
     private TimeView view;

@@ -7,11 +7,19 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+/**
+ * Handles reading & writing of comments.
+ */
 public class CommentModel {
   private File file;
   private BufferedReader reader;
   private BufferedWriter writer;
   
+  /**
+   * Reads comments from a text file for each blog message.
+   * @param messages ArrayList of blog messages.
+   * @param model User data control model
+   */
   public void readComments(ArrayList<BlogMessage> messages, UserModel model) {
     for (BlogMessage message : messages) {
       String line;
@@ -34,6 +42,12 @@ public class CommentModel {
     }
   }
   
+  /**
+   * Add a comment to comment text file.
+   * @param message BlogMessage object.
+   * @param user User object.
+   * @param text String containing the actual comment.
+   */
   public void addComment(BlogMessage message, User user, String text) {
     try {
       File file = new File("test/blogs/"+message.getOwner().getId()+"/"+message.getId()+"/comments.txt");

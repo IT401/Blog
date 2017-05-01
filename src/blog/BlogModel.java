@@ -17,13 +17,16 @@ import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
+/**
+ * Handles reading & writing of blog messages.
+ */
 public class BlogModel {
   ArrayList<Blog> blogs = new ArrayList<Blog>();
   private BufferedWriter writer;
     
   /**
    * Reads every users blog messages.
-   * @param users An ArrayList of users.
+   * @param users An ArrayList of User objects.
    */
     public void readBlogs(ArrayList<User> users) {
       for (User user : users) {
@@ -49,7 +52,7 @@ public class BlogModel {
      * Adds a new blog message and saves it in the file system.
      * @param title Title of the blog message.
      * @param document HTMLDocument with message content.
-     * @param user A user to whom the blog message belongs to.
+     * @param user User object to whom the blog message belongs to.
      */
     public void addBlogMessage(String title, HTMLDocument document, Date date, User user) {
       Blog blog = getBlog(user);

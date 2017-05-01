@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Handles time control element GUI.
+ */
 public class TimeView extends JPanel {
     private TimeController controller;
     private JButton addButton, subButton;

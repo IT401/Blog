@@ -2,6 +2,9 @@ package blog;
 
 import java.util.ArrayList;
 
+/**
+ * Handles message display and comment panel functionality.
+ */
 public class MessageController {
     private MainController main;
     private CommentModel model;
@@ -9,11 +12,11 @@ public class MessageController {
     private BlogMessage message;
     private ArrayList<CommentPanel> panels;
 
-  	public MessageController(MainController main, CommentModel model) {
-  		this.main = main;
+    public MessageController(MainController main, CommentModel model) {
+      this.main = main;
       this.model = model;
       view = new MessageView(this);
-  	}
+    }
     
     public void setupCommentPanels() {
       panels = new ArrayList<CommentPanel>();

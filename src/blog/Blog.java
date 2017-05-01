@@ -37,19 +37,12 @@ public class Blog {
         messages.remove(id);
     }
 
-    /**
-     * @return the user
-     */
     public User getOwner() {
         return owner;
     }
 
-    /**
-     * @param user the user to set
-     */
     public void setOwner(User owner) {
         this.owner = owner;
     }
-
 
 }

@@ -9,6 +9,10 @@ import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
+/**
+ * Contains data of one blog message. 
+ * Message content is saved inside and HTMLDocument for easier parsing.
+ */
 public class BlogMessage {
     private int id;
     private HTMLDocument document;
@@ -17,6 +21,13 @@ public class BlogMessage {
     private Date date;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     
+    /**
+     * Creates a blog message by converting plain content String to HTMLDocument.
+     * @param id Unique identification integer.
+     * @param html String containing the message content.
+     * @param owner User object representing the owner of the message.
+     * @param date Date that the message was created on.
+     */
     public BlogMessage(int id, String html, User owner, Date date) {
       HTMLEditorKit htmlKit = new HTMLEditorKit();
       HTMLDocument document = (HTMLDocument) htmlKit.createDefaultDocument();
@@ -33,7 +44,14 @@ public class BlogMessage {
       this.date = date;
       this.owner = owner;
     }
-
+    
+    /**
+     * Creates a blog message by parsing an HTMLDocument.
+     * @param id Identification integer.
+     * @param document HTMLDocument containing the message content.
+     * @param owner User object representing the owner of the message.
+     * @param date Date that the message was created on.
+     */
     public BlogMessage(int id, HTMLDocument document, User owner, Date date) {
       this.id = id;
       this.title = document.getElement(document.getDefaultRootElement(), StyleConstants.NameAttribute, HTML.Tag.H1).getName();
@@ -42,6 +60,14 @@ public class BlogMessage {
       this.owner = owner;
     }
     
+    /**
+     * Creates a blog message.
+     * @param id Identification integer.
+     * @param document HTMLDocument containing the message content.
+     * @param title String with the message title.
+     * @param owner User object representing the owner of the message.
+     * @param date Date that the message was created on.
+     */
     public BlogMessage(int id, HTMLDocument document, String title, User owner, Date date) {
       this.id = id;
       this.title = title;
@@ -68,73 +94,43 @@ public class BlogMessage {
     public String toString() {
       return id + " " + title + " " + date + " " + owner.getUsername();
     }
-    
-    /**
-     * @return the document
-     */
+
     public String getTitle() {
         return this.title;
     }
 
-    /**
-     * @param document the document to set
-     */
     public void setTitle(String title) {
         this.title = title;
     }
-    
-    /**
-     * @return the id
-     */
+
     public int getId() {
         return this.id;
     }
 
-    /**
-     * @param id the id to set
-     */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * @return the document
-     */
     public HTMLDocument getDocument() {
         return this.document;
     }
 
-    /**
-     * @param document the document to set
-     */
     public void setDocument(HTMLDocument document) {
         this.document = document;
     }
 
-    /**
-     * @return the date
-     */
     public Date getDate() {
         return this.date;
     }
 
-    /**
-     * @param date the date to set
-     */
     public void setDate(Date date) {
         this.date = date;
     }
 
-    /**
-     * @return the owner
-     */
     public User getOwner() {
         return owner;
     }
 
-    /**
-     * @param owner the owner to set
-     */
     public void setOwner(User owner) {
         this.owner = owner;
     }

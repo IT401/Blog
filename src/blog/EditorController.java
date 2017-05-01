@@ -1,8 +1,10 @@
 package blog;
 
-import javax.swing.JFileChooser;
 import javax.swing.text.html.HTMLDocument;
 
+/**
+ * Handles message editor functionality.
+ */
 public class EditorController {
     private MainController main;
     private BlogModel model;

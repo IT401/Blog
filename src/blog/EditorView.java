@@ -16,6 +16,10 @@ import javax.swing.text.Element;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.html.HTML;
 
+/**
+ * Handles new blog message editor GUI.
+ * @author Liudas Dzisevicius
+ */
 public class EditorView extends JPanel {
   private EditorController controller;
   private JEditorPane editor;

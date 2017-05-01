@@ -11,6 +11,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+/**
+ * A panel for displaying one comment.
+ */
 public class CommentPanel extends JPanel {
     GridBagConstraints c = new GridBagConstraints();
     Comment comment;
